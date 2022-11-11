@@ -26,26 +26,28 @@ class LoginView extends StatelessWidget {
 
   Widget _loginForm() {
     return BlocListener<LoginBloc, LoginState>(
-        listener: (context, state) {
-          final formStatus = state.formStatus;
-          if (formStatus is SubmissionFailed) {
-            _showSnackBar(context, formStatus.exception.toString());
-          }
-        },
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _usernameField(),
-                _passwordField(),
-                _loginButton(),
-              ],
-            ),
+      listener: (context, state) {
+        final formStatus = state.formStatus;
+        if (formStatus is SubmissionFailed) {
+          _showSnackBar(context, formStatus.exception.toString());
+        }
+      },
+      child: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _usernameField(),
+              _passwordField(),
+              const SizedBox(height: 20),
+              _loginButton(),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget _usernameField() {
